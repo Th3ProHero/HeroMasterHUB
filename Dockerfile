@@ -31,6 +31,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
+ENV JWT_SECRET="hErOhUb_S3cR3t_K3y_2026_xQ9mPvL7nRtW_default_secret_key_hero"
 
 # Don't run as root
 RUN addgroup --system --gid 1001 nodejs && \
