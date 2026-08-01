@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 
-export async function POST() {
+export async function POST(request: Request) {
+  const isHttps = request.url.startsWith("https://");
   const response = NextResponse.json({ success: true });
 
   // Delete the auth cookie by setting it with maxAge 0
   response.cookies.set("hero_token", "", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: isHttps,
     sameSite: "lax",
     maxAge: 0,
     path: "/",

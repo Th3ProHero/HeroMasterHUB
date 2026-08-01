@@ -35,9 +35,11 @@ export async function POST(request: Request) {
     // Build response with HttpOnly cookie
     const response = NextResponse.json({ success: true });
 
+    const isHttps = request.url.startsWith("https://");
+
     response.cookies.set("hero_token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: isHttps,
       sameSite: "lax",
       maxAge: 60 * 60 * 24, // 1 day in seconds
       path: "/",
